@@ -10,18 +10,17 @@ $b = rand(-10, 10);
 echo "Задание 1 <br>";
 var_dump($a, $b);
 echo "<br>";
-if($a >= 0){
-    if($b >= 0){
-        echo ("а и б положительные");
+if ($a >= 0) {
+    if ($b >= 0) {
+        echo("а и б положительные");
+    } else {
+        echo("а и б разных знаков");
     }
-    else{
-        echo ("а и б разных знаков");
-    }
-}else{
-    if($b < 0){
-        echo ("а и б отрицательные");
-    }else{
-        echo ("а и б разных знаков");
+} else {
+    if ($b < 0) {
+        echo("а и б отрицательные");
+    } else {
+        echo("а и б разных знаков");
     }
 }
 /*2. Присвоить переменной $а значение в промежутке [0..15].
@@ -31,10 +30,10 @@ echo "<br>";
 echo "Задание 2 <br>";
 $a = rand(0, 15);
 var_dump($a);
-switch ($a){
+switch ($a) {
     case 0;
-    echo "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15";
-    break;
+        echo "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15";
+        break;
     case 1;
         echo "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15";
         break;
@@ -83,15 +82,16 @@ switch ($a){
 }
 echo "<br>";
 recursion($a);
-function recursion (int $a){
-    if($a < 15){
+function recursion(int $a)
+{
+    if ($a < 15) {
         echo $a++ . ",";
         recursion($a);
-    }
-    else{
+    } else {
         echo $a;
     }
 }
+
 echo "<br>";
 echo "Задание 3 <br>";
 /*3. Реализовать основные 4 арифметические операции в виде функций с двумя параметрами.
@@ -101,37 +101,46 @@ $a = rand(-100, 100);
 $b = rand(-100, 100);
 var_dump($a, $b);
 echo "<br>";
-$sum = sum($a,$b);
+$sum = sum($a, $b);
 $difference = difference($a, $b);
 $product = product($a, $b);
 $quotient = quotient($a, $b);
 echo $sum . "<br>" . $difference . "<br>" . $product . "<br>" . $quotient . "<br>";
-function sum(int $a, int $b):int{
+function sum(int $a, int $b): int
+{
     return $a + $b;
 }
-function difference(int $a, int $b):int{
+
+function difference(int $a, int $b): int
+{
     return $a - $b;
 }
-function product(int $a, int $b):int{
+
+function product(int $a, int $b): int
+{
     return $a * $b;
 }
-function quotient(int $a, int $b):float{
-    if ($b){
+
+function quotient(int $a, int $b): float
+{
+    if ($b) {
         return round($a / $b, 3);
-    } else{
+    } else {
         echo "На ноль делить нельзя";
         return 0;
     }
 }
+
 /*4. Реализовать функцию с тремя параметрами:
 function mathOperation($arg1, $arg2, $operation), где $arg1, $arg2 – значения аргументов,
 $operation – строка с названием операции.
 В зависимости от переданного значения операции выполнить одну из арифметических операций
 (использовать функции из пункта 3) и вернуть полученное значение (использовать switch).*/
-echo "Задание 4 <br>" ;;
+echo "Задание 4 <br>";
 echo mathOperation($a, $b, "product");
-function mathOperation(int $arg1, int $arg2, string $operation){
-    switch ($operation){
+function mathOperation(int $arg1, int $arg2, string $operation)
+{
+    switch ($operation) {
         case "sum":
             return sum($arg1, $arg2);
         case "difference":
@@ -144,4 +153,18 @@ function mathOperation(int $arg1, int $arg2, string $operation){
             echo "Не правильная операция";
             return 0;
     }
+}
+
+echo "<br>";
+/*6. *С помощью рекурсии организовать функцию возведения числа в степень.
+Формат: function power($val, $pow), где $val – заданное число, $pow – степень.*/
+power(2, 4);
+function power($val, $pow)
+{
+    if ($pow > 1) {
+        $pow--;
+        $val *= $val;
+        power($val, $pow);
+    } else
+        return $val;
 }
